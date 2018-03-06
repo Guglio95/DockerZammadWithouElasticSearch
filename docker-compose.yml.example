@@ -4,8 +4,8 @@ services:
   zammad:
     depends_on:
       - mariadb
-    image: guglio/zammad
-#    build: ./zammad-docker/images/zammad
+    image: guglio/zammad-noelasticsearch:latest
+#    build: ./zammad
     restart: always
     ports:
       - 8080:8080

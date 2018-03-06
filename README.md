@@ -1,5 +1,7 @@
 # Docker Zammad
 
+![Docker Hub](https://img.shields.io/docker/build/guglio/zammad-noelasticsearch.svg)
+
 Docker image for the [Zammad](https://zammad.org) open source helpdesk/customer support system without ElasticSearch. This will use less RAM.
 
 Inspired by the [official images](https://github.com/zammad/zammad-docker-compose).
@@ -28,4 +30,3 @@ The `zammad` container can be configured with the following environment variable
 | `DB_NAME`     | Name of the database                                                 | Yes      |
 | `DB_USERNAME` | Username for the database user                                       | Yes      |
 | `DB_PASSWORD` | Password for the database user                                       | No       |
-
