@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  zammad:
+    depends_on:
+      - mariadb
+    image: guglio/zammad
+#    build: ./zammad-docker/images/zammad
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      - DB_ADAPTER=mysql2
+      - DB_HOSTNAME=mariadb
+      - DB_NAME=zammad
+      - DB_USERNAME=zammad
+      - DB_PASSWORD=password
+    volumes:
+      - ./zammad-data:/opt/zammad/storage
+
+  mariadb:
+      image: mariadb:latest
+      restart: always
+      volumes:
+          - ./mysql_data:/var/lib/mysql
+      environment:
+          - MYSQL_ROOT_PASSWORD=rootpass
+          - MYSQL_DATABASE=zammad
+          - MYSQL_USER=zammad
+          - MYSQL_PASSWORD=password
+
+  phpMyAdmin:
+      image: phpmyadmin/phpmyadmin
+      restart: always
+      ports:
+          - "8081:80"
+      volumes:
+          - /sessions
+      environment:
+          - PMA_HOST=mariadb
+      depends_on:
+          - mariadb
